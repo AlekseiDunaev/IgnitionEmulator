@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../inc/main.h"
 
 TASK_t tasks[] = {
     {40, SHADOW_IN},
