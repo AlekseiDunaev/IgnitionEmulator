@@ -184,21 +184,22 @@ void printAll() {
 
 void emulationCicle(uint16_t timesCount) {
 
+    int timesCountIdle = timesCount * 6;
     PinState.HALL_INPUT = SHADOW_IN;
-         
+
     while (timesCount--) {
         TMR1_DefaultInterruptHandler();
     }
-    
+
     printf("Flag.overloadCount: %d, sectorCount: %d.\t sparkTime: %d\n", Flag.overflowCount, sectorCount, sparkTime);
 
     PinState.HALL_INPUT = SHADOW_OUT;
     timesCount *= 6;
 
-    while (timesCount--) {
+    while (timesCountIdle--) {
         TMR1_DefaultInterruptHandler();
     }
-    
+
 }
 
 void emulationWork(TASK_t *tasks, uint8_t numberOfTasks) {
